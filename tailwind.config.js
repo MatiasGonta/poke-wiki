@@ -5,8 +5,21 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        'shimmer': {
+          '0%': {
+            backgroundPosition: '100% 0',
+          },
+          '100%': {
+            backgroundPosition: '-100% 0',
+          }
+        },
+      },
+      animation: {
+        'shimmer': 'shimmer 1.5s linear infinite',
+      }
+    },
   },
   plugins: [],
 }
-
