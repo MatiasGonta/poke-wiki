@@ -11,7 +11,7 @@ const Stats: React.FC<StatsInterface> = ({ stats }) => {
         <div className="p-4 pb-0 text-poke-primary">
             <h3 className="font-bold text-xl mb-4">Stats</h3>
 
-            <ul role="list" className="flex flex-col gap-3.5 text-sm">
+            <ul  className="flex flex-col gap-3.5 text-sm">
                 {
                     stats.map(({ base_stat, stat }, index) => {
                         let statName = stat.name;

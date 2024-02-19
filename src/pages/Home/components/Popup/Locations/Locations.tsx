@@ -20,16 +20,14 @@ const Locations: React.FC<LocationsInterface> = ({ pokemonId }) => {
                     />
                 ) : (
                     locations && locations.length > 0 && (
-                        <div className="w-full p-4 pt-0 text-poke-primary">
+                        <div className="w-full p-4 text-poke-primary">
                             <h3 className="font-bold text-xl mb-4">Locations</h3>
-                            <ul role="list" className="flex flex-col gap-2.5 text-sm ml-4">
+                            <ul className="flex flex-col gap-2.5 text-sm ml-4">
                                 {
                                     locations.map((loc, index) => (
-                                        <li key={index} className="flex gap-1 items-center">
-                                            <p className="font-mono text-wrap text-sm text-slate-500 flex items-center gap-1">
-                                                <span className="font-bold text-slate text-base">-</span>
-                                                {loc.location_area.name}
-                                            </p>
+                                        <li key={index} className="font-mono text-wrap text-sm text-slate-500 flex items-center gap-1">
+                                            <span className="font-bold text-slate text-base">-</span>
+                                            {loc.location_area.name}
                                         </li>
                                     ))
                                 }

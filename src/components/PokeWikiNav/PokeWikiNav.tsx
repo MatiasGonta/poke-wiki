@@ -31,7 +31,7 @@ const PokeWikiNav: React.FC<PokeWikiNavInterface> = ({ wrapper = true }) => {
         },
         {
             name: 'Dashboard',
-            path: '/Dashboard',
+            path: '/dashboard',
             icon: (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -55,18 +55,15 @@ const PokeWikiNav: React.FC<PokeWikiNavInterface> = ({ wrapper = true }) => {
     ]
 
     return (
-        <nav role="navigation" className={`flex gap-4 shadow-xl rounded-md ${wrapper ? 'border border-gray-300 py-3 px-4' : ''}`}>
+        <nav className={`flex gap-4 shadow-xl rounded-md ${wrapper ? 'border border-gray-300 py-2 px-3' : ''}`}>
             {
                 ROUTES.map(({ name, path, icon }, index) => (
                     <TooltipWrapper key={index}>
                         <Link
                             to={path}
-                            role="link"
                             className="group relative cursor-pointer"
                         >
-                            <div className="flex h-5 w-5 items-center justify-center rounded-full">
-                                {icon}
-                            </div>
+                            {icon}
 
                             <Tooltip axisY={-25}>
                                 {name}

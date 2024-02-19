@@ -47,7 +47,7 @@ const PokemonCharts: React.FC<PokemonChartsInterface> = () => {
                 ) : (
                     <section className="p-4 border border-poke-border bg-white rounded-md flex flex-col items-center gap-6 lg:gap-2.5 lg:flex-row">
                         <article className="w-full">
-                            <h3 className="text-lg font-medium text-poke-primary" role="barchart">
+                            <h3 className="text-lg font-medium text-poke-primary">
                                 Number of pokemons types ({new Date().getFullYear()})
                             </h3>
                             <BarChart
@@ -68,28 +68,26 @@ const PokemonCharts: React.FC<PokemonChartsInterface> = () => {
                         <div className="w-3/4 mx-auto h-px bg-poke-border rounded-md lg:h-[300px] lg:w-px lg:mx-0" />
 
                         <article>
-                            <div className="space-y-3">
-                                <div className="flex flex-col sm:flex-row lg:flex-col gap-4 justify-center items-center" role="donutchart">
-                                    <DonutChart
-                                        data={chartData}
-                                        variant="donut"
-                                        index="name"
-                                        category="Number of pokemon types"
-                                        colors={chartData.map(type => type.color)}
-                                        valueFormatter={dataFormatter}
-                                        customTooltip={customTooltip}
-                                        showAnimation={true}
-                                        onValueChange={handleBarClick}
-                                        className="max-w-[160px]"
-                                        noDataText="Pokemons types not found"
-                                    />
-                                    <div className="h-0 w-0 hidden bg-poke-border rounded-md lg:block lg:w-[160px] lg:h-px" />
-                                    <Legend
-                                        categories={chartData.map(type => type.name)}
-                                        colors={chartData.map(type => type.color)}
-                                        className="max-w-xs"
-                                    />
-                                </div>
+                            <div className="flex flex-col sm:flex-row lg:flex-col gap-4 justify-center items-center">
+                                <DonutChart
+                                    data={chartData}
+                                    variant="donut"
+                                    index="name"
+                                    category="Number of pokemon types"
+                                    colors={chartData.map(type => type.color)}
+                                    valueFormatter={dataFormatter}
+                                    customTooltip={customTooltip}
+                                    showAnimation={true}
+                                    onValueChange={handleBarClick}
+                                    className="max-w-[160px]"
+                                    noDataText="Pokemons types not found"
+                                />
+                                <div className="h-0 w-0 hidden bg-poke-border rounded-md lg:block lg:w-[160px] lg:h-px" />
+                                <Legend
+                                    categories={chartData.map(type => type.name)}
+                                    colors={chartData.map(type => type.color)}
+                                    className="max-w-xs"
+                                />
                             </div>
                         </article>
                     </section>

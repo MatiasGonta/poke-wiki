@@ -1,9 +1,10 @@
-import { Tooltip, TooltipWrapper } from "@/components";
+import { LoadingSpinner, Tooltip, TooltipWrapper } from "@/components";
 import { PopupContext } from "@/pages/Home/context";
-import { Locations } from "./Locations";
-import { useContext } from "react";
+import { Suspense, lazy, useContext } from "react";
 import { Header } from "./Header";
-import { Stats } from "./Stats";
+
+const Locations = lazy(() => import('./Locations/Locations'));
+const Stats = lazy(() => import('./Stats/Stats'));
 
 const Popup = () => {
     const { pokemon, isOpen, handlePopup } = useContext(PopupContext);
@@ -24,7 +25,6 @@ const Popup = () => {
                                         <button
                                             type="button"
                                             aria-label="Close popup"
-                                            role="button"
                                             className="sticky w-fit top-0 left-full mr-4 p-1.5 rounded-full text-poke-primary transition-all bg-white border border-white hover:bg-slate-200 hover:border-poke-border active:scale-95"
                                             onClick={handlePopup}
                                         >
@@ -46,11 +46,13 @@ const Popup = () => {
                                         sprites={pokemon.sprites}
                                     />
 
-                                    <div className="flex flex-col gap-4">
+                                    <Suspense fallback={<LoadingSpinner type="FLEX" barWidth={120} />}>
                                         <Stats stats={pokemon.stats} />
+                                    </Suspense>
 
+                                    <Suspense fallback={<LoadingSpinner type="FLEX" barWidth={120} />}>
                                         <Locations pokemonId={pokemon.id} />
-                                    </div>
+                                    </Suspense>
                                 </div>
                             </div>
                         ) : (

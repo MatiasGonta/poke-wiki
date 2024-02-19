@@ -163,7 +163,7 @@ export default {
       pattern:
         /^(fill-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
     },
-    ...["[#a8a878]", "[#f08030]", "[#c03028]", "[#6890f0]", "[#a890f0]", "[#78c850]", "[#a040a0]", "[#f8d030]", "[#e0c068]", "[#f85888]", "[#b8a038]", "[#8dcdcd]", "[#a8b820]", "[#7038f8]", "[#705898]", "[#705848]", "[#b8b8d0]", "[#f0b6bc]"].flatMap((customColor) => [
+    ...["[#c4c499]", "[#f0a773]", "[#be6f6a]", "[#a9bceb]", "[#cabef0]", "[#aad794]", "[#ccaccc]", "[#f5e39e]", "[#e8ce85]", "[#f993b1]", "[#cfbd73]", "[#b3cdcd]", "[#bac656]", "[#9a76f4]", "[#9180ad]", "[#8a786b]", "[#c6c6db]", "[#eec5c9]"].flatMap((customColor) => [
       `bg-${customColor}`,
       `border-${customColor}`,
       `hover:bg-${customColor}`,

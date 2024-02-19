@@ -1,8 +1,8 @@
-import { Skeleton } from "@/components"
+import { Skeleton } from "@/components";
 
 export default function PokemonChartSkeleton() {
     return (
-        <div className="p-4 border border-poke-border bg-white rounded-md flex flex-col items-center gap-6 lg:gap-5 lg:flex-row" role="progressbar">
+        <div className="p-4 border border-poke-border bg-white rounded-md flex flex-col items-center gap-6 lg:gap-5 lg:flex-row">
             <SkeletonBarChart />
             <SkeletonDonutChart />
         </div>
@@ -110,25 +110,21 @@ const SkeletonBarChart = () => {
 
 const SkeletonDonutChart = () => {
     return (
-        <div>
-            <div className="space-y-3">
-                <div className="flex flex-col sm:flex-row lg:flex-col gap-8 justify-center items-center">
-                    <div className="relative w-[160px] h-[160px] overflow-hidden rounded-full p-4">
-                        <Skeleton width="w-full" height="h-[100%]" className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2" />
+        <div className="flex flex-col sm:flex-row lg:flex-col gap-8 justify-center items-center">
+            <div className="relative w-[160px] h-[160px] overflow-hidden rounded-full p-4">
+                <Skeleton width="w-full" height="h-[100%]" className="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2" />
 
-                        <div className="relative top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10 size-full bg-white rounded-full" />
-                    </div>
+                <div className="relative top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 z-10 size-full bg-white rounded-full" />
+            </div>
 
-                    <div className="w-full max-w-[320px] h-full flex flex-wrap gap-x-2 gap-y-0.5">
-                        {
-                            Array.from({ length: 18 }).map((_, index) => (
-                                <li key={index}>
-                                    <Skeleton width="w-10" height="h-3" />
-                                </li>
-                            ))
-                        }
-                    </div>
-                </div>
+            <div className="w-full max-w-[320px] h-full flex flex-wrap gap-x-2 gap-y-0.5">
+                {
+                    Array.from({ length: 18 }).map((_, index) => (
+                        <li key={index}>
+                            <Skeleton width="w-10" height="h-3" />
+                        </li>
+                    ))
+                }
             </div>
         </div>
     )

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 interface ErrorCardInterface {
     errorMsg: string;
-    retryFunc: () => void;
+    retryFunc?: () => void;
     backToHomeBtn?: boolean;
     className?: string;
 }
@@ -18,19 +18,17 @@ const ErrorCard: React.FC<ErrorCardInterface> = ({ className, errorMsg, retryFun
                     backToHomeBtn &&
                     <Link
                         to="/"
-                        role="link"
                         className="rounded-md py-1 px-2.5 text-sm transition-all hover:text-[#b91c1cd0] active:scale-95"
                     >
-                        <span>Back to home</span>
+                        Back to home
                     </Link>
                 }
                 <button
-                    role="button"
                     type="button"
                     className="rounded-md border border-[#b91c1c] bg-[#feecec] py-1 px-2.5 text-sm transition-all hover:bg-[#fce5e5] active:scale-95"
                     onClick={retryFunc}
                 >
-                    <span>Try again</span>
+                    Try again
                 </button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { HTMLProps } from "react";
+import { HTMLProps } from "react";
 
 interface TooltipWrapperInterface extends HTMLProps<HTMLDivElement> {
     className?: HTMLDivElement['className'];
@@ -28,7 +28,6 @@ export const Tooltip: React.FC<TooltipInterface> = ({ children, axisX, axisY }) 
 
     return (
         <span
-            role="tooltip"
             style={tooltipStyles}
             className="absolute -translate-x-[50%] z-20 text-poke-tertiary scale-0 rounded-lg border border-poke-border bg-white px-1 py-px text-xs font-medium shadow-md transition-all ease-in-out group-hover:scale-100"
         >
