@@ -1,3 +1,5 @@
+import { colorTypes } from "./colorTypes.enum";
+
 interface Pasttype {
     generation: Resource;
     types: Type[];
@@ -202,4 +204,15 @@ export interface Pokemon {
     stats: Stat[];
     types: Type[];
     past_types: Pasttype[];
+}
+
+export type RawPokemon = {
+    name: string;
+    url: string;
+}
+
+export interface PokemonType {
+    name: keyof typeof colorTypes,
+    count: number,
+    color: colorTypes;
 }

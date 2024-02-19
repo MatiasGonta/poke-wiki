@@ -10,7 +10,7 @@ export enum colorTypes {
     'ground' = '#e0c068',
     'psychic' = '#f85888',
     'rock' = '#b8a038',
-    'ice' = '#98d8d8',
+    'ice' = '#8dcdcd',
     'bug' = '#a8b820',
     'dragon' = '#7038f8',
     'ghost' = '#705898',
