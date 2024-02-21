@@ -69,6 +69,7 @@ const Card = ({ name, url }: RawPokemon) => {
 export default Card;
 
 const CardSkeleton = () => {
+
     const randomNumber = Math.random();
 
     const showTwoSkeletons = randomNumber > 0.5;

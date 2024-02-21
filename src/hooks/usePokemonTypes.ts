@@ -1,7 +1,6 @@
 import { PokemonType, colorTypes } from "@/models";
 import { useEffect, useState } from "react";
-import { api } from "@/services";
-import axios from "axios";
+import { BASE_URL } from "@/services";
 
 export function usePokemonTypes() {
     const POKEMON_TYPES = Object.keys(colorTypes) as (keyof typeof colorTypes)[];
@@ -23,12 +22,12 @@ export function usePokemonTypes() {
             let typesData: any = [];
             
             for (const pokemonType of POKEMON_TYPES) {
-                const { data } = await api.get(`/type/${pokemonType}`);
+                const res = await fetch(`${BASE_URL}/type/${pokemonType}`).then(res => res.ok && res.json());
 
                 const type = {
-                    name: data.name,
-                    count: data.pokemon.length,
-                    color: colorTypes[data.name as keyof typeof colorTypes],
+                    name: res.name,
+                    count: res.pokemon.length,
+                    color: colorTypes[res.name as keyof typeof colorTypes],
                 };
 
                 typesData = [ ...typesData, type ];
@@ -37,15 +36,8 @@ export function usePokemonTypes() {
             // Set data in the state
             setPokemonTypes(typesData);
         } catch (error) {
-            if (axios.isAxiosError(error)) {
-                // Accessing error.response will always be available
-                const errorMessage = error.response?.data?.message || error.message || "Error fetching Pokemon chart stats";
-
-                setError(errorMessage);
-            } else {
-                setError("Error fetching Pokemon chart stats");
-                console.error("Error fetching Pokemon chart stats: ", error);
-            }
+            setError("Error fetching Pokemon chart stats");
+            console.error("Error fetching Pokemon chart stats: ", error);
         } finally {
             setIsLoading(false);
         }

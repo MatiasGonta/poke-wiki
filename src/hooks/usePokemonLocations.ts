@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Location } from "@/models";
-import { api } from "@/services";
-import axios from "axios";
+import { BASE_URL } from "@/services";
 
 export function usePokemonLocations({ id }: { id: number }) {
     // Status states
@@ -12,20 +11,13 @@ export function usePokemonLocations({ id }: { id: number }) {
 
     async function fetchPokemonLocations() {
         try {
-            const { data } = await api.get(`pokemon/${id}/encounters`);
+            const res = await fetch(`${BASE_URL}pokemon/${id}/encounters`).then(res => res.ok && res.json());
 
             // Set data in the state
-            setLocations(data);
+            setLocations(res);
         } catch (error) {
-            if (axios.isAxiosError(error)) {
-                // Accessing error.response will always be available
-                const errorMessage = error.response?.data?.message || error.message || "Error fetching Pokemon locations";
-
-                setError(errorMessage);
-            } else {
-                setError("Error fetching Pokemon locations");
-                console.error("Error fetching Pokemon locations: ", error);
-            }
+            setError("Error fetching Pokemon locations");
+            console.error("Error fetching Pokemon locations: ", error);
         } finally {
             setIsLoading(false);
         }

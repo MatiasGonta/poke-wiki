@@ -1,7 +1,6 @@
 import { Filters, RawPokemon, colorTypes } from "@/models";
 import { useEffect, useState } from "react";
-import { api } from "@/services";
-import axios from "axios";
+import { BASE_URL } from "@/services";
 
 interface UsePokemonsProps {
     limit?: number;
@@ -25,15 +24,10 @@ export function usePokemons({ limit = 30, filters }: UsePokemonsProps) {
 
     // Fetch handlers
     const handleDefaultFetch = async () => {
-        const { data } = await api.get('/pokemon', {
-            params: {
-                limit,
-                offset,
-            },
-        });
+        const res = await fetch(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`).then(res => res.ok && res.json());
 
-        const totalPokemons: number = data.count;
-        const newData = data.results || [];
+        const totalPokemons: number = res.count;
+        const newData = res.results || [];
 
         // Update pokemons state
         setPokemons((prevPokemons) => {
@@ -59,8 +53,8 @@ export function usePokemons({ limit = 30, filters }: UsePokemonsProps) {
         for (const type of filters?.type!) {
             if (!colorTypes[type]) continue;
 
-            const { data } = await api.get(`/type/${type}`);
-            const newData = data.pokemon.map(({ pokemon }: { pokemon: RawPokemon }) => pokemon);
+            const res = await fetch(`${BASE_URL}/type/${type}`).then(res => res.ok && res.json());
+            const newData = res.pokemon.map(({ pokemon }: { pokemon: RawPokemon }) => pokemon);
 
             pokemonData = {
                 total: pokemonData.total + newData.length,
@@ -83,15 +77,8 @@ export function usePokemons({ limit = 30, filters }: UsePokemonsProps) {
             if (filters && filters.type && filters.type.length > 0) await handleTypeFetch();
             else await handleDefaultFetch();
         } catch (error) {
-            if (axios.isAxiosError(error)) {
-                // Accessing error.response will always be available
-                const errorMessage = error.response?.data?.message || error.message || "Error fetching Pokemon catalog";
-
-                setError(errorMessage);
-            } else {
-                setError("Error fetching Pokemon catalog");
-                console.error("Error fetching Pokemon catalog: ", error);
-            }
+            setError("Error fetching Pokemon catalog");
+            console.error("Error fetching Pokemon catalog: ", error);
         } finally {
             setIsLoading(false);
         }
